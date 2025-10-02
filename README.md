@@ -7,21 +7,21 @@ for the Full Stack Java Programming course.
 
 ## Usage
 
-### start a MySQL server, create a MySQL database named "railpass", keep the server running
+Start a MySQL server, create a MySQL database named "railpass", keep the server running
 
-### Put your MySQL credentials (username and password) in src/main/resources/application.properties
+Put your MySQL credentials (username and password) in src/main/resources/application.properties
 
-### Set a secret string (at least 32 characters long) as TOKEN_SECRET environment variable
+Set a secret string (at least 32 characters long) as TOKEN_SECRET environment variable
 
-### Execute the following command,
+Execute the following command,
 
-#### On Linux/Unix:
+On Linux/Unix:
 
 ```sh
 ./mvnw spring-boot:run
 ```
 
-#### On Windows:
+On Windows:
 
 ```sh
 .\mvnw.cmd spring-boot:run
