@@ -7,6 +7,27 @@ for the Full Stack Java Programming course.
 
 ## Usage
 
+Clone the repository, and cd into it
+
+```
+git clone --recurse-submodules https://github.com/SegmentationViolator/RailPass.git
+cd RailPass
+```
+
+Build the frontend
+
+```
+cd frontend
+npm i
+npm run build
+```
+
+Go back to the parent directory
+
+```
+cd ..
+```
+
 Start a MySQL server, create a MySQL database named "railpass", keep the server running
 
 Put your MySQL credentials (username and password) in src/main/resources/application.properties
