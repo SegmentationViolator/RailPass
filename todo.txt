@@ -1,0 +1,13 @@
+add real functionality
+
+token verification code:
+        Optional<String> subject = TokenGenerator.getSubject(request.token);
+
+        if (subject.isEmpty()) return AuthenticationResponse.failure("expired or invalid token");
+
+        Long id = Long.parseLong(subject.get());
+        Optional<User> optionalUser = repository.findById(id);
+
+        if (optionalUser.isEmpty()) return AuthenticationResponse.failure("user not found");
+
+        return AuthenticationResponse.success(request.token);
