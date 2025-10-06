@@ -15,7 +15,7 @@ import com.railpass.web.UserRepository;
 import jakarta.validation.Valid;
 
 @RestController
-@RequestMapping("/auth")
+@RequestMapping("/api/auth")
 public class AuthenticationController {
     @Autowired
     private UserRepository repository;
@@ -27,7 +27,7 @@ public class AuthenticationController {
 
         if (repository.existsByEmail(request.email)) return AuthenticationResponse.failure("user already exists");
         
-        User user = new User(request.email, hash, salt);
+        User user = new User(request.email, hash, salt, false);
         repository.save(user);
 
         String token = TokenGenerator.generateToken(user.getId().toString());

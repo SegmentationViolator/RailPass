@@ -32,7 +32,7 @@ Start a MySQL server, create a MySQL database named "railpass", keep the server 
 
 Put your MySQL credentials (username and password) in src/main/resources/application.properties
 
-Set a secret string (at least 32 characters long) as TOKEN_SECRET environment variable
+Set TOKEN_SECRET environment variable to a Base64 encoded string (containing at least 32--ideally random--bytes)
 
 Execute the following command,
 

@@ -1,6 +1,6 @@
 package com.railpass.web.authentication;
 
-import java.nio.charset.StandardCharsets;
+import java.util.Base64;
 import java.util.Date;
 import java.util.Optional;
 
@@ -11,7 +11,7 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.security.Keys;
 
 public class TokenGenerator {
-    private final static SecretKey TOKEN_SECRET = Keys.hmacShaKeyFor(System.getenv("TOKEN_SECRET").getBytes(StandardCharsets.UTF_8));
+    private final static SecretKey TOKEN_SECRET = Keys.hmacShaKeyFor(Base64.getDecoder().decode(System.getenv("TOKEN_SECRET")));
     private final static int TOKEN_TTL = 2*60*60*1000; // 2 hours
 
     public static String generateToken(String subject) {
@@ -24,7 +24,7 @@ public class TokenGenerator {
             .compact();
     }
 
-    public static Optional<String> getSubject(String token) {
+    public static Optional<String> validateToken(String token) {
         try {
             String subject = Jwts.parser()
                 .verifyWith(TOKEN_SECRET)

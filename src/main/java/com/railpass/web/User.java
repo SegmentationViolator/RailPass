@@ -1,5 +1,8 @@
 package com.railpass.web;
 
+import java.util.Set;
+
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,6 +10,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Index;
 import jakarta.persistence.Lob;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
 @Entity
@@ -29,9 +33,15 @@ public class User {
     @Column(nullable = false)
     private byte[] salt;
 
+    private boolean isAdmin;
+
+    @OneToMany(mappedBy = "student", cascade = CascadeType.ALL)
+    private Set<Application> applications;
+
     protected User() {}
 
-    public User(String email, byte[] passwordHash, byte[] salt) {
+    public User(String email, byte[] passwordHash, byte[] salt, boolean isAdmin) {
+        this.isAdmin = isAdmin;
         this.email = email;
         this.passwordHash = passwordHash;
         this.salt = salt;
@@ -51,5 +61,13 @@ public class User {
 
     public byte[] getSalt() {
         return salt;
+    }
+
+    public Set<Application> getApplications() {
+        return applications;
+    }
+
+    public boolean isAdmin() {
+        return isAdmin;
     }
 }
